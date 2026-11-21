@@ -1,0 +1,519 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>
+:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}
+img{max-width:100%}
+[hidden]:not([hidden=until-found i]){display:none!important}
+</style>
+<title>হাচান এগ্রো ফার্ম</title>
+<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef1e6;--sf:#fff;--tx:#1f2a1c;--mt:#5f6b58;--ac:#2d5a35;--on:#fff;--hi:#e3a72f;--ln:#d5dbc8;--rd:#b3412f}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141a12;--sf:#1e2619;--tx:#e8eddf;--mt:#9aa68f;--ac:#7fbf88;--on:#10170e;--ln:#2f3a29;--rd:#e07a67}}
+:root[data-theme="dark"]{--bg:#141a12;--sf:#1e2619;--tx:#e8eddf;--mt:#9aa68f;--ac:#7fbf88;--on:#10170e;--ln:#2f3a29;--rd:#e07a67}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--tx);font-family:"Hind Siliguri",system-ui,sans-serif;font-size:16px}
+#main{padding:16px 16px 96px;max-width:560px;margin:0 auto}
+h1{font-size:28px;margin:8px 0 14px;font-weight:700}
+h2{font-size:18px;margin:20px 0 8px}
+.hero{background:var(--ac);color:var(--on);border-radius:20px;padding:18px}
+.hero small{opacity:.85}
+.hero .big{font-size:40px;font-weight:700;line-height:1.2}
+.hero .two{display:flex;gap:24px;margin-top:8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.st{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:12px 14px}
+.st small{color:var(--mt)}.st b{display:block;font-size:30px;line-height:1.2}
+.bar{display:flex;justify-content:space-between;align-items:center}
+button{font:inherit;background:var(--ac);color:var(--on);border:0;border-radius:12px;padding:10px 16px;font-weight:600;cursor:pointer}
+button.ghost{background:transparent;color:var(--tx);border:1px solid var(--ln)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid var(--hi);outline-offset:2px}
+.it{background:var(--sf);border:1px solid var(--ln);border-radius:14px;padding:12px 14px;margin-top:8px;display:flex;gap:10px;align-items:center}
+.it .l{flex:1;min-width:0}.it .l b{display:block}.it .l small{color:var(--mt)}
+.tag{font-size:14px;font-weight:600;border-radius:8px;padding:3px 9px;background:var(--bg);white-space:nowrap}
+.tag.ok{color:var(--ac)}.tag.bad{color:var(--rd)}.tag.gold{background:var(--hi);color:#2a2000}
+.x{background:none;color:var(--mt);padding:4px 8px;font-size:18px}
+.empty{color:var(--mt);padding:24px 8px;text-align:center}
+#nav{position:fixed;left:0;right:0;bottom:0;background:var(--sf);border-top:1px solid var(--ln);display:flex;overflow-x:auto;padding:6px 6px calc(6px + env(safe-area-inset-bottom,0px))}
+#nav button{background:none;color:var(--mt);flex:1 0 auto;min-width:64px;padding:8px 6px;font-size:14px}
+#nav button.on{color:var(--on);background:var(--ac)}
+#sheet{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:flex-end;justify-content:center;z-index:5}
+#sheet[hidden]{display:none}
+.box{background:var(--sf);width:100%;max-width:560px;border-radius:20px 20px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px));max-height:90%;overflow:auto}
+.box h2{margin-top:0}
+label{display:block;margin-bottom:10px;color:var(--mt);font-size:14px}
+input,select,textarea{display:block;width:100%;font:inherit;font-size:16px;padding:10px;margin-top:4px;border:1px solid var(--ln);border-radius:10px;background:var(--bg);color:var(--tx)}
+.row{display:flex;gap:10px;justify-content:flex-end;margin-top:8px;flex-wrap:wrap}
+.av{width:112px;height:112px;border-radius:50%;margin:8px auto 0;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:48px;overflow:hidden}
+.av img{width:100%;height:100%;object-fit:cover}
+a{color:var(--ac)}
+.th{width:48px;height:48px;border-radius:50%;object-fit:cover;flex:none}
+#top{max-width:560px;margin:0 auto;padding:12px 16px 0}
+.hd{display:flex;align-items:center;gap:12px;width:100%;background:var(--sf);color:var(--tx);border:1px solid var(--ln);border-radius:16px;padding:8px 12px;text-align:left;line-height:1.3}
+</style>
+</head>
+<body>
+<div id="top"></div>
+<div id="main"></div>
+<div id="nav"></div>
+<div id="sheet" hidden></div>
+
+<script>
+const K = 'hasan_agro_farm_v1';
+const VG = [
+  {n:'পিপিআর (ছাগলের প্লেগ)',a:'৩-৪ মাস বয়সে',r:'বছরে ১ বার',m:12,t:'জ্বর, নাক-চোখ দিয়ে পানি, ডায়রিয়া ও মুখে ঘা হয়।'},
+  {n:'ক্ষুরারোগ (FMD)',a:'৩-৪ মাস বয়সে, ৩-৪ সপ্তাহ পর বুস্টার',r:'প্রতি ৬ মাসে',m:6,t:'মুখ ও খুরে ঘা হয়, খেতে ও হাঁটতে পারে না।'},
+  {n:'তড়কা (অ্যানথ্রাক্স)',a:'৩-৬ মাস বয়সে',r:'বছরে ১ বার',m:12,t:'হঠাৎ মৃত্যু হতে পারে। রোগপ্রবণ এলাকায় ৬ মাস পর পর।'},
+  {n:'গলাফুলা (HS)',a:'৩-৫ মাস বয়সে, ৩-৪ সপ্তাহ পর বুস্টার',r:'বছরে ১ বার, বর্ষার আগে',m:12,t:'জ্বর, গলা ফুলে যায়, শ্বাসকষ্ট হয়।'},
+  {n:'ইটি (এন্টারোটক্সিমিয়া)',a:'৩-৪ মাস বয়সে, ৩-৪ সপ্তাহ পর বুস্টার',r:'বছরে ১ বার, বর্ষার আগে',m:12,t:'বেশি খাওয়ার পর হঠাৎ মৃত্যু, পেট ফাঁপা ও ডায়রিয়া।'},
+  {n:'ছাগলের বসন্ত',a:'৩-৫ মাস বয়সে',r:'বছরে ১ বার',m:12,t:'গায়ে গুটি ও ফোসকা হয়।'},
+  {n:'বাদলা (BQ)',a:'৬ মাস বয়সে',r:'বছরে ১ বার, বর্ষার আগে',m:12,t:'পায়ের মাংস ফুলে যায়, খুঁড়িয়ে হাঁটে।'},
+  {n:'কৃমিনাশক (ওষুধ, টিকা নয়)',a:'৩ মাস বয়স থেকে',r:'বছরে ২ বার',m:6,t:'টিকার ১-২ সপ্তাহ আগে কৃমিনাশক দেওয়া ভালো।'}
+];
+const VGN = VG.map(v => v.n).concat(['অন্যান্য']);
+const COLS = ['goats','vax','wt','br','sales','exp','wk','wl','by','dr','pt','mg'];
+const addM = (d,m) => { const x = new Date(d || today()); x.setMonth(x.getMonth() + m); return x.toISOString().slice(0,10); };
+
+const defaultState = () => ({
+  goats:[], vax:[], wt:[], br:[], sales:[], exp:[], wk:[], wl:[],
+  owner:{ name:'হাচান এগ্রো ফার্ম' }, by:[], dr:[], pt:[], mg:[], members:[]
+});
+
+let S = defaultState();
+let ISO = true;
+let CAN = true;
+let ME = { email: '', name: 'মালিক' };
+
+function loadStorage() {
+  try {
+    const raw = localStorage.getItem(K) || localStorage.getItem('goatfarm1');
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      S = Object.assign(defaultState(), parsed);
+      if (!S.owner) S.owner = { name:'হাচান এগ্রো ফার্ম' };
+    }
+  } catch (e) {}
+}
+
+function save() {
+  try {
+    localStorage.setItem(K, JSON.stringify(S));
+  } catch (e) {
+    toast('স্টোরেজ পূর্ণ বা সেভ করা যাচ্ছে না।');
+  }
+}
+
+const $ = s => document.querySelector(s);
+function toast(m) {
+  let t = $('#toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'toast';
+    t.setAttribute('role','status');
+    t.style.cssText = 'position:fixed;left:16px;right:16px;bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:9;background:var(--tx);color:var(--bg);border-radius:12px;padding:12px 16px;text-align:center';
+    document.body.appendChild(t);
+  }
+  t.textContent = m;
+  t.hidden = false;
+  clearTimeout(t._h);
+  t._h = setTimeout(() => { t.hidden = true; }, 3500);
+}
+window.alert = toast;
+
+function ask(msg) {
+  return new Promise(r => {
+    const sh = $('#sheet');
+    sh.innerHTML = '<div class="box"><h2 id="ask_t"></h2><div class="row"><button class="ghost" id="ask_n">না</button><button id="ask_y">হ্যাঁ</button></div></div>';
+    $('#ask_t').textContent = msg;
+    sh.hidden = false;
+    $('#ask_n').onclick = () => { sh.hidden = true; r(false); };
+    $('#ask_y').onclick = () => { sh.hidden = true; r(true); };
+  });
+}
+
+const bn = n => Number(n || 0).toLocaleString('bn-BD');
+const tk = n => '৳' + bn(Math.round(Number(n || 0)));
+const today = () => new Date().toISOString().slice(0,10);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const gname = id => { const g = S.goats.find(x => x.id == id); return g ? g.tag + (g.name ? ' ' + g.name : '') : '—'; };
+const age = d => { const m = Math.max(0, Math.round((Date.now() - new Date(d)) / 2629800000)); return m < 12 ? bn(m) + ' মাস' : bn(Math.floor(m/12)) + ' বছর'; };
+const mon = () => today().slice(0,7);
+
+const T = {
+  goats:{ t:'ছাগল', req:['tag'], f:[['photo','ছবি','photo'],['tag','নম্বর/ট্যাগ','text'],['name','নাম','text'],['breed','জাত','text'],['sex','লিঙ্গ','sel',['ছাগী','পাঁঠা']],['dob','জন্মতারিখ','date'],['weight','ওজন (কেজি)','number'],['health','স্বাস্থ্য','sel',['সুস্থ','অসুস্থ']]] },
+  vax:{ t:'টিকা/ওষুধ', req:['name'], needG:1, f:[['gid','ছাগল','goat'],['name','টিকা/ওষুধ','sel',VGN],['st','অবস্থা','sel',['এখন দিয়েছি','পরে দিতে হবে']],['date','তারিখ','date']] },
+  wt:{ t:'ওজন', req:['kg'], needG:1, f:[['gid','ছাগল','goat'],['date','তারিখ','date'],['kg','ওজন (কেজি)','number']] },
+  br:{ t:'প্রজনন', req:[], needG:1, f:[['gid','ছাগী','goat'],['type','ধরন','sel',['প্রজনন করানো','বাচ্চা হয়েছে']],['date','তারিখ','date'],['note','নোট','text']] },
+  sales:{ t:'বিক্রি', req:['amount'], f:[['gid','ছাগল','goat'],['date','তারিখ','date'],['amount','দাম (টাকা)','number'],['note','ক্রেতা/নোট','text']] },
+  exp:{ t:'খরচ', req:['desc','amount'], f:[['desc','বিবরণ','text'],['cat','ধরন','sel',['খাবার','ওষুধ','শ্রমিক','যাতায়াত','অন্যান্য']],['date','তারিখ','date'],['amount','টাকা','number']] },
+  wk:{ t:'শ্রমিক', req:['name'], f:[['photo','ছবি','photo'],['name','নাম','text'],['post','পদের নাম','text'],['mobile','মোবাইল নম্বর','tel'],['addr','ঠিকানা','text'],['wage','দৈনিক মজুরি (টাকা)','number']] },
+  wl:{ t:'মজুরির হিসাব', req:['amount'], f:[['wid','শ্রমিক','worker'],['type','ধরন','sel',['মজুরি পাওনা','টাকা দেওয়া']],['date','তারিখ','date'],['amount','টাকা','number'],['note','নোট','text']] },
+  by:{ t:'ক্রেতা', req:['name','amount'], f:[['name','ক্রেতার নাম','text'],['mobile','মোবাইল নম্বর','tel'],['addr','ঠিকানা','text'],['gid','ছাগল','goat'],['date','তারিখ','date'],['amount','কত টাকায় কিনেছেন','number']] },
+  dr:{ t:'ডাক্তার', req:['name'], f:[['photo','ছবি','photo'],['name','নাম','text'],['spec','বিশেষত্ব/পদবি','text'],['mobile','মোবাইল নম্বর','tel'],['addr','ঠিকানা/চেম্বার','text'],['fee','ভিজিট ফি (টাকা)','number'],['note','নোট','text']] },
+  pt:{ t:'পার্টনার', req:['name'], f:[['name','নাম','text'],['mobile','মোবাইল নম্বর','tel'],['addr','ঠিকানা','text'],['photo','ছবি','photo'],['share','অংশ (%)','number'],['note','নোট','text']] },
+  mg:{ t:'ম্যানেজার', req:['name'], f:[['photo','ছবি','photo'],['name','নাম','text'],['post','পদ','text'],['mobile','মোবাইল নম্বর','tel'],['addr','ঠিকানা','text']] }
+};
+
+const TABS = [['home','হোম'],['goats','ছাগল'],['vax','টিকা'],['wt','ওজন'],['br','প্রজনন'],['sales','বিক্রি'],['exp','খরচ'],['wk','শ্রমিক'],['wl','মজুরি'],['me','মালিক'],['by','ক্রেতা'],['dr','ডাক্তার'],['pt','পার্টনার'],['mg','ম্যানেজার'],['vg','টিকা নির্দেশিকা'],['ct','যোগাযোগ'],['sh','ব্যাকআপ ও ডাটা']];
+const tl = m => m ? `<a href="tel:${esc(m)}">${esc(m)}</a>` : 'মোবাইল নেই';
+const bal = id => S.wl.filter(x => x.wid == id).reduce((s,x) => s + (x.type == 'টাকা দেওয়া' ? -1 : 1) * Number(x.amount), 0);
+
+const R = {
+  goats: g => [esc(g.tag + (g.name ? ' ' + g.name : '')), esc([g.breed, g.sex, g.dob ? age(g.dob) : '', g.weight ? bn(g.weight) + ' কেজি' : ''].filter(Boolean).join(', ')), `<span class="tag ${g.health == 'সুস্থ' ? 'ok' : g.sold ? 'gold' : 'bad'}">${esc(g.health)}</span>`, g.photo],
+  vax: v => [esc(v.name), esc(gname(v.gid) + ', ' + v.date), `<button class="ghost" onclick="tog('${v.id}')">${v.done ? '✓ হয়েছে' : v.date < today() ? 'দেরি, দিন' : 'বাকি'}</button>`],
+  wt: w => [bn(w.kg) + ' কেজি', esc(gname(w.gid) + ', ' + w.date), ''],
+  br: b => [esc(b.type), esc(gname(b.gid) + ', ' + b.date + (b.note ? ', ' + b.note : '')), ''],
+  sales: s => [tk(s.amount), esc((s.gid ? gname(s.gid) : 'ছাগল') + ', ' + s.date + (s.note ? ', ' + s.note : '')), ''],
+  exp: e => [esc(e.desc), esc(e.cat + ', ' + e.date), `<b>${tk(e.amount)}</b>`],
+  by: b => [esc(b.name), tl(b.mobile) + (b.addr ? ', ' + esc(b.addr) : '') + (b.gid ? ', ' + esc(gname(b.gid)) : '') + ', ' + b.date, `<b>${tk(b.amount)}</b>`],
+  dr: d => [esc(d.name + (d.spec ? ' (' + d.spec + ')' : '')), tl(d.mobile) + (d.addr ? ', ' + esc(d.addr) : '') + (d.fee ? ', ভিজিট ' + tk(d.fee) : '') + (d.note ? ', ' + esc(d.note) : ''), '', d.photo],
+  pt: p => [esc(p.name), tl(p.mobile) + (p.addr ? ', ' + esc(p.addr) : '') + (p.note ? ', ' + esc(p.note) : ''), p.share ? `<span class="tag gold">${bn(p.share)}%</span>` : '', p.photo],
+  wk: w => { const b = bal(w.id); return [esc(w.name + (w.post ? ' (' + w.post + ')' : '')), (w.mobile ? `<a href="tel:${esc(w.mobile)}">${esc(w.mobile)}</a>` : 'মোবাইল নেই') + (w.addr ? ', ' + esc(w.addr) : '') + (w.wage ? ', দৈনিক ' + tk(w.wage) : ''), `<span class="tag ${b > 0 ? 'bad' : 'ok'}">${b > 0 ? 'পাওনা ' + tk(b) : b < 0 ? 'অগ্রিম ' + tk(-b) : 'মেটানো'}</span>`, w.photo]; },
+  wl: x => [esc(x.type) + ' ' + tk(x.amount), esc((S.wk.find(w => w.id == x.wid) || {}).name + ', ' + x.date + (x.note ? ', ' + x.note : '')), ''],
+  mg: m => [esc(m.name + (m.post ? ' (' + m.post + ')' : '')), tl(m.mobile) + (m.addr ? ', ' + esc(m.addr) : ''), '', m.photo]
+};
+
+function more() {
+  $('#main').innerHTML = `<h1>আরও</h1><div class="grid">${TABS.filter(t => !['home','goats','exp','sales'].includes(t[0])).map(([k,l]) => `<button class="ghost" style="padding:18px 8px" onclick="go('${k}')">${l}</button>`).join('')}</div>`;
+}
+
+let pend = null, PK = null;
+function owner() {
+  const o = S.owner || {};
+  $('#main').innerHTML = `<h1>মালিকের প্রোফাইল</h1><div class="st" style="text-align:center"><div class="av">${o.photo ? `<img src="${o.photo}" alt="মালিকের ছবি">` : '🐐'}</div><h2 style="margin:10px 0 2px">${esc(o.name || 'হাচান এগ্রো ফার্ম')}</h2><div>${o.mobile ? `<a href="tel:${esc(o.mobile)}">${esc(o.mobile)}</a>` : 'মোবাইল নম্বর নেই'}</div><div style="color:var(--mt)">${esc(o.addr || 'ঠিকানা নেই')}</div>${o.gmail ? `<div style="color:var(--mt)">${esc(o.gmail)}</div>` : ''}<div class="row" style="justify-content:center"><button onclick="ownerForm()">তথ্য বদলান</button></div></div>`;
+}
+
+function ownerForm() {
+  const o = S.owner || {};
+  pend = o.photo || null;
+  PK = null;
+  $('#sheet').innerHTML = `<div class="box"><h2>মালিকের তথ্য</h2><label>ছবি<input type="file" accept="image/*" onchange="pick(this)"><small class="pv"></small></label><label>নাম<input id="o_name" value="${esc(o.name || '')}"></label><label>মোবাইল নম্বর<input id="o_mob" type="tel" value="${esc(o.mobile || '')}"></label><label>Gmail<input id="o_gm" type="email" value="${esc(o.gmail || '')}"></label><label>ঠিকানা<input id="o_addr" value="${esc(o.addr || '')}"></label><div class="row"><button class="ghost" onclick="closeF()">বাতিল</button><button onclick="saveO()">সংরক্ষণ করুন</button></div></div>`;
+  $('#sheet').hidden = false;
+}
+
+function pick(el) {
+  const f = el.files[0];
+  if (!f) return;
+  const pv = el.parentNode.querySelector('.pv');
+  pv.textContent = 'ছবি তৈরি হচ্ছে…';
+  PK = (async () => {
+    try {
+      let src, w, h;
+      try {
+        src = await createImageBitmap(f, { imageOrientation: 'from-image' });
+        w = src.width; h = src.height;
+      } catch (e) {
+        const u = URL.createObjectURL(f), im = new Image();
+        await new Promise((ok, no) => { im.onload = ok; im.onerror = no; im.src = u; });
+        src = im; w = im.naturalWidth; h = im.naturalHeight;
+        URL.revokeObjectURL(u);
+      }
+      const z = Math.min(1, 320 / Math.max(w, h));
+      const c = document.createElement('canvas');
+      c.width = Math.max(1, Math.round(w * z));
+      c.height = Math.max(1, Math.round(h * z));
+      c.getContext('2d').drawImage(src, 0, 0, c.width, c.height);
+      pend = c.toDataURL('image/jpeg', 0.8);
+      pv.textContent = '✓ ছবি ঠিক আছে';
+    } catch (e) {
+      pend = null;
+      pv.textContent = 'এই ছবি পড়া যায়নি। অন্য ছবি (JPG বা PNG) বাছুন।';
+    }
+  })();
+}
+
+async function saveO() {
+  if (PK) await PK;
+  S.owner = {
+    photo: pend,
+    name: $('#o_name').value.trim() || 'হাচান এগ্রো ফার্ম',
+    mobile: $('#o_mob').value.trim(),
+    gmail: $('#o_gm').value.trim().toLowerCase(),
+    addr: $('#o_addr').value.trim()
+  };
+  save();
+  closeF();
+  render();
+  toast('মালিকের তথ্য সংরক্ষিত হয়েছে।');
+}
+
+function downloadFile(filename, content, mimeType) {
+  const blob = new Blob([content], { type: mimeType });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function backup(kind) {
+  try {
+    const d = new Date().toISOString().slice(0,10);
+    if (kind === 'json') {
+      const data = JSON.stringify(S, null, 2);
+      downloadFile('hasan-agro-farm-' + d + '.json', data, 'application/json;charset=utf-8');
+      toast('JSON ব্যাকআপ ফাইল ডাউনলোড হয়েছে।');
+    } else {
+      const q = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
+      const rows = [['ধরন','তারিখ','বিবরণ','টাকা']].concat(
+        (S.sales || []).map(x => ['আয়', x.date, x.note || gname(x.gid), x.amount]),
+        (S.exp || []).map(x => ['খরচ', x.date, x.desc + ' (' + x.cat + ')', x.amount])
+      );
+      const csv = '\ufeff' + rows.map(r => r.map(q).join(',')).join('\n');
+      downloadFile('hasan-agro-hisab-' + d + '.csv', csv, 'text/csv;charset=utf-8');
+      toast('CSV হিসাব ফাইল ডাউনলোড হয়েছে।');
+    }
+    localStorage.setItem('gf_lb', Date.now());
+  } catch (e) {
+    toast('ফাইল ডাউনলোড করতে সমস্যা হয়েছে।');
+  }
+}
+
+async function impB(el) {
+  const f = el.files[0];
+  if (!f) return;
+  try {
+    const text = await f.text();
+    const d = JSON.parse(text);
+    if (!await ask('ফাইলের ডাটা বর্তমান localStorage ডাটার সাথে যুক্ত/আপডেট হবে। চালিয়ে যাবেন?')) return;
+    S = Object.assign(defaultState(), S, d);
+    save();
+    render();
+    toast('ব্যাকআপ ডাটা সফলভাবে লোড হয়েছে।');
+  } catch (e) {
+    toast('সঠিক JSON ব্যাকআপ ফাইল নয়।');
+  }
+  el.value = '';
+}
+
+function access() {
+  $('#main').innerHTML = `
+    <h1>ব্যাকআপ ও ডাটা</h1>
+    <div class="st" style="margin-bottom:10px">
+      <b>LocalStorage স্টোরেজ সক্রিয়</b><br>
+      <small>আপনার সব তথ্য এই ফোনের ব্রাউজারের localStorage-এ সংরক্ষিত হচ্ছে। নিরাপদ রাখতে নিয়মিত ব্যাকআপ ফাইল ডাউনলোড করে Google Drive-এ রাখুন।</small>
+    </div>
+    <div class="st" style="margin-bottom:10px">
+      <b>ব্যাকআপ ডাউনলোড</b><br>
+      <small>সম্পূর্ণ ডাটা JSON হিসেবে অথবা আয়-ব্যয়ের হিসাব CSV হিসেবে ডাউনলোড করুন।</small>
+      <div class="row" style="justify-content:flex-start">
+        <button onclick="backup('json')">সব ডাটা (JSON)</button>
+        <button class="ghost" onclick="backup('csv')">হিসাব (CSV / Sheets)</button>
+      </div>
+    </div>
+    <div class="st" style="margin-bottom:10px">
+      <b>ব্যাকআপ থেকে ডাটা লোড</b><br>
+      <small>আগে সংরক্ষণ করা JSON ব্যাকআপ ফাইল থেকে ডাটা ফিরিয়ে আনুন।</small>
+      <label>JSON ফাইল বাছুন<input type="file" accept=".json,application/json" onchange="impB(this)"></label>
+    </div>
+    <div class="st" style="margin-bottom:10px">
+      <b>টেক্সট ডাটা কপি ও পেস্ট</b><br>
+      <small>অন্য ডিভাইসে ডাটা নিতে কপি করুন অথবা নিচে বসিয়ে লোড করুন।</small>
+      <textarea id="dt" rows="4" placeholder="JSON ডাটা এখানে দেখাবে বা পেস্ট করুন"></textarea>
+      <div class="row">
+        <button class="ghost" onclick="$('#dt').value=JSON.stringify(S)">ডাটা দেখান</button>
+        <button onclick="loadTextData()">টেক্সট ডাটা লোড</button>
+      </div>
+    </div>
+  `;
+}
+
+async function loadTextData() {
+  try {
+    const d = JSON.parse($('#dt').value);
+    if (!await ask('বর্তমান ডাটা এই JSON ডাটা দিয়ে বদলে যাবে। চালিয়ে যাবেন?')) return;
+    S = Object.assign(defaultState(), d);
+    save();
+    toast('ডাটা লোড হয়েছে।');
+    go('home');
+  } catch (e) {
+    toast('JSON ডাটা ঠিক নেই।');
+  }
+}
+
+function contacts() {
+  const o = S.owner || {};
+  const row = (n, sub, m) => `<div class="it"><div class="l"><b>${esc(n)}</b><small>${esc(sub || '')}</small></div>${m ? `<a href="tel:${esc(m)}" style="background:var(--ac);color:var(--on);border-radius:12px;padding:10px 16px;font-weight:600;text-decoration:none">কল করুন</a>` : ''}</div>`;
+  $('#main').innerHTML = '<h1>যোগাযোগ</h1>' +
+    (o.name ? '<h2>মালিক</h2>' + row(o.name, o.addr, o.mobile) : '') +
+    [['mg','ম্যানেজার'],['wk','শ্রমিক'],['dr','ডাক্তার'],['pt','পার্টনার']].map(([k,l]) => (S[k] && S[k].length) ? `<h2>${l}</h2>` + S[k].map(x => row(x.name, [x.post || x.spec, x.addr].filter(Boolean).join(', '), x.mobile)).join('') : '').join('');
+}
+
+function vgPage() {
+  $('#main').innerHTML = '<h1>টিকা নির্দেশিকা</h1><div class="st"><small>এগুলো সাধারণ নির্দেশনা। এলাকা, ভ্যাকসিনের কোম্পানি ও ডাক্তারের পরামর্শে সময় বদলাতে পারে।</small></div>' +
+    VG.map(v => `<div class="it"><div class="l"><b>${v.n}</b><small>প্রথম ডোজ: ${v.a}<br>পুনরায়: ${v.r}<br>${v.t}</small></div><span class="tag gold">${bn(v.m)} মাস</span></div>`).join('');
+}
+
+let tab = 'home';
+function go(t) { tab = t; render(); scrollTo(0,0); }
+function sum(a) { return (a || []).filter(x => (x.date || '').startsWith(mon())).reduce((s,x) => s + Number(x.amount || 0), 0); }
+
+function render() {
+  const o = S.owner || {};
+  $('#top').innerHTML = `<button class="hd" onclick="go('me')" aria-label="মালিকের প্রোফাইল">${o.photo ? `<img class="th" src="${o.photo}" alt="">` : '<span class="th" style="display:flex;align-items:center;justify-content:center;background:var(--bg);font-size:26px">🐐</span>'}<span><b style="font-size:20px">হাচান এগ্রো ফার্ম</b><br><small style="color:var(--mt)">${esc(o.name || 'মালিকের তথ্য দিন')} • LocalStorage</small></span></button>`;
+  const MN = [['home','হোম'],['goats','ছাগল'],['exp','খরচ'],['sales','বিক্রি'],['more','আরও']];
+  $('#nav').innerHTML = MN.map(([k,l]) => `<button class="${k == tab || (k == 'more' && !MN.some(m => m[0] == tab)) ? 'on' : ''}" onclick="go('${k}')">${l}</button>`).join('');
+
+  if (tab === 'home') home();
+  else if (tab === 'me') owner();
+  else if (tab === 'more') more();
+  else if (tab === 'sh') access();
+  else if (tab === 'ct') contacts();
+  else if (tab === 'vg') vgPage();
+  else list(tab);
+}
+
+function home() {
+  const a = (S.goats || []).filter(g => !g.sold);
+  const inc = sum(S.sales);
+  const ex = sum(S.exp);
+  const pr = inc - ex;
+  const due = (S.vax || []).filter(v => !v.done && v.date <= new Date(Date.now() + 6048e5).toISOString().slice(0,10)).sort((x,y) => x.date < y.date ? -1 : 1);
+
+  $('#main').innerHTML = `
+    <div class="hero">
+      <small>এই মাসের লাভ/ক্ষতি</small>
+      <div class="big">${pr < 0 ? '−' : ''}${tk(Math.abs(pr))}</div>
+      <div class="two">
+        <div><small>আয়</small><br><b>${tk(inc)}</b></div>
+        <div><small>খরচ</small><br><b>${tk(ex)}</b></div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="st"><small>মোট ছাগল</small><b>${bn(a.length)}</b></div>
+      <div class="st"><small>সুস্থ</small><b>${bn(a.filter(g => g.health == 'সুস্থ').length)}</b></div>
+      <div class="st"><small>অসুস্থ</small><b>${bn(a.filter(g => g.health != 'সুস্থ').length)}</b></div>
+      <div class="st"><small>বিক্রি হয়েছে</small><b>${bn((S.goats || []).length - a.length)}</b></div>
+    </div>
+    <h2>আসন্ন ও বাকি টিকা/ওষুধ</h2>
+    ${due.length ? due.map(v => `<div class="it"><div class="l"><b>${esc(v.name)}</b><small>${esc(gname(v.gid))}, ${v.date}</small></div><button class="ghost" onclick="tog('${v.id}')">দেওয়া হয়েছে</button></div>`).join('') : '<div class="empty">এই সপ্তাহে কোনো টিকা বা ওষুধ বাকি নেই।</div>'}
+  `;
+}
+
+function list(k) {
+  const c = T[k];
+  if (!c) return;
+  let a = (S[k] || []).slice();
+  a.sort((x,y) => ['goats','wk','dr','pt','mg'].includes(k) ? 0 : (x.date < y.date ? 1 : -1));
+  $('#main').innerHTML = `<div class="bar"><h1>${c.t}</h1>${k == 'vax' ? `<button class="ghost" onclick="go('vg')">নির্দেশিকা</button>` : ''}<button onclick="openForm('${k}')">+ যোগ করুন</button></div>` +
+    (a.length ? a.map(x => {
+      const [t,s,r,p] = R[k](x);
+      return `<div class="it">${p ? `<img class="th" src="${p}" alt="">` : ''}<div class="l"><b>${t}</b><small>${s}</small></div>${r}<button class="x" aria-label="মুছুন" onclick="del('${k}','${x.id}')">✕</button></div>`;
+    }).join('') : `<div class="empty">এখনো কিছু যোগ করা হয়নি। উপরের বাটনে চেপে শুরু করুন।</div>`);
+}
+
+function openForm(k) {
+  const c = T[k];
+  pend = null; PK = null;
+  if (k == 'wl' && !S.wk.length) { toast('আগে শ্রমিক যোগ করুন।'); go('wk'); return; }
+  if (c.needG && !S.goats.filter(g => !g.sold).length) { toast('আগে ছাগল যোগ করুন।'); go('goats'); return; }
+
+  const h = c.f.map(([n,l,ty,o]) => {
+    let i;
+    if (ty == 'sel') i = `<select id="f_${n}">${o.map(x => `<option>${x}</option>`).join('')}</select>`;
+    else if (ty == 'photo') i = `<input type="file" accept="image/*" onchange="pick(this)"><small class="pv"></small>`;
+    else if (ty == 'worker') i = `<select id="f_${n}">${S.wk.map(w => `<option value="${w.id}">${esc(w.name)}</option>`).join('')}</select>`;
+    else if (ty == 'goat') i = `<select id="f_${n}">${k == 'sales' || k == 'by' ? '<option value="">ছাগল বাছাই করবেন না</option>' : ''}${S.goats.filter(g => !g.sold).map(g => `<option value="${g.id}">${esc(gname(g.id))}</option>`).join('')}</select>`;
+    else i = `<input id="f_${n}" type="${ty}" ${ty == 'date' && n != 'dob' ? `value="${today()}"` : ''} ${ty == 'number' ? 'inputmode="decimal"' : ''}>`;
+    return `<label>${l}${i}</label>`;
+  }).join('');
+
+  $('#sheet').innerHTML = `<div class="box"><h2>${c.t} যোগ করুন</h2>${h}<div class="row"><button class="ghost" onclick="closeF()">বাতিল</button><button onclick="saveF('${k}')">সংরক্ষণ করুন</button></div></div>`;
+  $('#sheet').hidden = false;
+}
+
+function closeF() { $('#sheet').hidden = true; }
+
+async function saveF(k) {
+  if (PK) await PK;
+  const c = T[k];
+  const o = { id: Date.now() + '' + Math.floor(Math.random() * 999) };
+  c.f.forEach(([n,,ty]) => {
+    if (ty == 'photo') { o[n] = pend; return; }
+    let v = $('#f_' + n).value;
+    if (ty == 'number') v = v === '' ? '' : parseFloat(v);
+    o[n] = v;
+  });
+
+  if (c.req.some(n => o[n] === '' || o[n] == null || Number.isNaN(o[n]))) {
+    toast('দরকারি ঘরগুলো পূরণ করুন।');
+    return;
+  }
+
+  if (k == 'wt') {
+    const g = S.goats.find(x => x.id == o.gid);
+    if (g) g.weight = o.kg;
+  }
+  if (k == 'vax') {
+    o.done = o.st == 'এখন দিয়েছি';
+    const g = VG.find(x => x.n == o.name);
+    if (o.done && g && g.m && !S.vax.some(x => x.gid == o.gid && x.name == o.name && !x.done)) {
+      S.vax.push({ id: o.id + 'n', gid: o.gid, name: o.name, date: addM(o.date, g.m), done: false, auto: true });
+    }
+  }
+  if (k == 'wl' && o.type == 'টাকা দেওয়া') {
+    const e = { id: o.id + 'e', desc: 'মজুরি: ' + ((S.wk.find(w => w.id == o.wid) || {}).name || ''), cat: 'শ্রমিক', date: o.date, amount: o.amount };
+    S.exp.push(e);
+    o.ref = e.id;
+  }
+  if (k == 'by') {
+    const s = { id: o.id + 's', gid: o.gid || '', date: o.date, amount: o.amount, note: o.name };
+    S.sales.push(s);
+    o.ref = s.id;
+    const g = S.goats.find(x => x.id == o.gid);
+    if (g) { g.sold = true; g.health = 'বিক্রি হয়েছে'; }
+  }
+  if (k == 'sales' && o.gid) {
+    const g = S.goats.find(x => x.id == o.gid);
+    if (g) { g.sold = true; g.health = 'বিক্রি হয়েছে'; }
+  }
+
+  S[k].push(o);
+  save();
+  closeF();
+  render();
+  toast(c.t + ' সংরক্ষিত হয়েছে।');
+}
+
+async function del(k, id) {
+  if (!await ask('মুছে ফেলবেন?')) return;
+  const d = (S[k] || []).find(x => x.id == id);
+  if (d && d.ref) {
+    S.exp = S.exp.filter(e => e.id != d.ref);
+    S.sales = S.sales.filter(e => e.id != d.ref);
+  }
+  if (k == 'wk') S.wl = S.wl.filter(x => x.wid != id);
+  S[k] = (S[k] || []).filter(x => x.id != id);
+  save();
+  render();
+  toast('মুছে ফেলা হয়েছে।');
+}
+
+function tog(id) {
+  const v = (S.vax || []).find(x => x.id == id);
+  if (!v) return;
+  v.done = !v.done;
+  if (v.done) {
+    const g = VG.find(x => x.n == v.name);
+    if (g && g.m && !S.vax.some(x => x.gid == v.gid && x.name == v.name && !x.done && x.id != v.id)) {
+      const dt = addM(today(), g.m);
+      S.vax.push({ id: Date.now() + 'v', gid: v.gid, name: v.name, date: dt, done: false, auto: true });
+      toast('পরের ডোজের তারিখ বসানো হয়েছে: ' + dt);
+    }
+  }
+  save();
+  render();
+}
+
+loadStorage();
+render();
+</script>
+</body>
+</html>
